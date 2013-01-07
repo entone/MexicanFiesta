@@ -12,6 +12,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=IM+Fell+English:400,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
     <style>
 
     /* GLOBAL STYLES
@@ -26,7 +27,7 @@
     }
 
     h2,h1,p {
-    	font-family: 'IM Fell English', serif;
+        font-family: 'IM Fell English', serif;
     }
 
 
@@ -44,8 +45,15 @@
       margin-top: 20px;
       margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
     }
-    .navbar-wrapper .navbar {
+    
+    .map{
+      height: 200px;
+      padding: 3px;
+      border: 1px solid #333333;
+    }
 
+    .history{
+        margin-top: 28px;
     }
 
     /* Remove border and change up box shadow for more contrast */
@@ -57,7 +65,7 @@
     }
 
     .navbar .navbar-inner{
-    	background-image: url('img/ricepaper2.png');
+        background-image: url('img/ricepaper2.png');
     }
 
     /* Downsize the brand/project name a bit */
@@ -79,8 +87,8 @@
     }
 
     .dropdown-menu{
-    	background-image: url('img/ricepaper2.png');
-    	font-size: 18px;	
+        background-image: url('img/ricepaper2.png');
+        font-size: 18px;    
     }
 
 
@@ -277,7 +285,7 @@
     <!-- Fav and touch icons -->
 
     <script language='javascript' type='text/javascript'>
-    	var menu = "https://docs.google.com/spreadsheet/pub?key=0Ah7aYYo2LOtwdG50NzU1UEVzV2tCTEpCVV80dFFUSkE&output=html";
+        var menu = "https://docs.google.com/spreadsheet/pub?key=0Ah7aYYo2LOtwdG50NzU1UEVzV2tCTEpCVV80dFFUSkE&output=html";
     </script>
   </head>
 
@@ -315,7 +323,7 @@
                 <li><a href="#">Contact</a></li>
               </ul>
               <ul class='nav pull-right'>
-              	<li><a href='#'>Like us on Facebook<img style='height:20px; margin-left: 7px;' src='img/fbicon.png'/></a></li>
+                <li><a href='#'>Like us on Facebook<img style='height:20px; margin-left: 7px;' src='img/fbicon.png'/></a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
@@ -330,13 +338,12 @@
     ================================================== -->
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">        
-      	<div class="item active">
+        <div class="item active">
           <img src="img/examples/slide4.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+              <h1>Tradition</h1>
+              <p class="lead">At Mexican Fiesta, we have proudly served delicious authentic Mexican food for the people of Metro Detroit for over 40 years.We are proud of our family and our reputation, and hope it shows in our food and service.</p>
             </div>
           </div>
         </div>
@@ -344,20 +351,21 @@
           <img src="img/examples/slide2.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Learn more</a>
+              <h1>History</h1>
+              <p class="lead">Sam and Francis Alvarado's dream started in a small location located in Dearborn Heights back in 1963. With a lot of hard work, that location steadily grew and so did the Alvarado family. Three generation and two locations later, we are still here providing the same great authentic mexican food that many people have grown to love.</p>
             </div>
           </div>
         </div>        
         <div class="item">
           <img src="img/examples/slide5.jpg" alt="">
           <div class="container">
+            <!--
             <div class="carousel-caption">
               <h1>One more for good measure.</h1>
               <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
             </div>
+            -->
           </div>
         </div>
       </div>
@@ -375,28 +383,22 @@
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
-        <div class="span4">
-          <img class="img-circle" data-src="holder.js/140x140">
-          <h2>Our History</h2>
-          <p>Sam and Francis Alvarado's dream started in a small location located in Dearborn Heights back in 1963. With a lot of hard work, that location steadily grew and so did the Alvarado family. Three generation and two locations later, we are still here providing the same great authentic mexican food that many people have grown to love.</p>
+        <div class="span6">
+            <h2>Dearborn</h2>            
+            <div class='map' id="dearborn_map"></div>
+            24310 Ford Road &bull; Dearborn Heights, MI 48127 &bull; 313.274.3066
         </div><!-- /.span4 -->
-        <div class="span4">
-          <img class="img-circle" data-src="holder.js/140x140">
-          <h2>Locations</h2>
-          <h4>Canton</h4>
-          44401 Ford Road</br>
-		  Canton, MI 48187</br>
-		  734.981.1048
-		  <h4>Dearborn Heights</h4>
-          24310 Ford Road</br>
-		  Dearborn Heights, MI 48127</br>
-		  313.274.3066
-        </div><!-- /.span4 -->
-        <div class="span4">
-          <img class="img-circle" data-src="holder.js/140x140">
-          <h2>Quality</h2>
-          <p>At Mexican Fiesta, we have proudly served delicious authentic Mexican food for the people of Metro Detroit for over 40 years.We are proud of our family and our reputation, and hope it shows in our food and service.</p>
-        </div><!-- /.span4 -->        
+        <div class="span6">
+            <h2>Canton</h2>
+            <div class='map' id="canton_map"></div>
+            44401 Ford Road &bull; Canton, MI 48187 &bull; 734.981.1048
+        </div>
+      </div>
+      <div class='row history'>
+        <div class="span12">
+            <h2>History</h2>
+            <p>Sam and Francis Alvarado's dream started in a small location located in Dearborn Heights back in 1963. With a lot of hard work, that location steadily grew and so did the Alvarado family. Three generation and two locations later, we are still here providing the same great authentic mexican food that many people have grown to love.</p>
+        </div><!-- /.span12 -->        
       </div><!-- /.row -->
 
       <hr class="featurette-divider">
@@ -417,15 +419,48 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/tabletop.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
     <script>
       !function ($) {
         $(function(){
           // carousel demo
           $('#myCarousel').carousel({
-          	interval:6000,
+            interval:6000,
           })
         })
-      }(window.jQuery)
+      }(window.jQuery);
+
+
+      // initialize the map on the "map" div
+      build();
+
+      function build(){
+        var c_map = new L.Map('canton_map');
+        var c_cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/9a24337329444a6a95d36c21af604c56/82617/256/{z}/{x}/{y}.png', 
+          {
+            maxZoom: 18,
+          }
+        );
+        var canton = new L.LatLng(42.321712,-83.478617); // geographical point (longitude and latitude)
+        c_map.setView(canton, 14).addLayer(c_cloudmade);
+        var marker = new L.Marker(new L.LatLng(42.321712,-83.478617));
+        c_map.addLayer(marker);
+
+        var d_map = new L.Map('dearborn_map');
+        var d_cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/9a24337329444a6a95d36c21af604c56/82617/256/{z}/{x}/{y}.png', 
+          {
+            maxZoom: 18,
+          }
+        );
+        var dearborn = new L.LatLng(42.3271327, -83.274946); // geographical point (longitude and latitude)
+        d_map.setView(dearborn, 14).addLayer(d_cloudmade);
+        var d_marker = new L.Marker(new L.LatLng(42.3271327, -83.274946));
+        d_map.addLayer(d_marker);
+
+        // attach a given HTML content to the marker and immediately open it
+        //marker.bindPopup("<img src='/static/img/scarab.jpg' width='50' />").openPopup();
+      }
+
     </script>
   </body>
 </html>
