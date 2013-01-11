@@ -6,7 +6,7 @@
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
-  background-image: url('img/ricepaper2.png');
+  background-image: url('/img/ricepaper2.png');
   font-family: 'IM Fell English', serif;
 }
 
@@ -14,7 +14,12 @@ h2,h1,p {
     font-family: 'IM Fell English', serif;
 }
 
-
+span.description{
+  display:block;
+  font-size: 12px;
+  color: #999999;
+  line-height: 14px;
+}
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
@@ -49,7 +54,7 @@ h2,h1,p {
 }
 
 .navbar .navbar-inner{
-    background-image: url('img/ricepaper2.png');
+    background-image: url('/img/ricepaper2.png');
 }
 
 /* Downsize the brand/project name a bit */
@@ -71,7 +76,7 @@ h2,h1,p {
 }
 
 .dropdown-menu{
-    background-image: url('img/ricepaper2.png');
+    background-image: url('/img/ricepaper2.png');
     font-size: 18px;    
 }
 
@@ -79,6 +84,10 @@ h2,h1,p {
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
+
+.loader{
+  margin:10px;
+}
 
 /* Carousel base class */
 .carousel {
@@ -251,5 +260,5 @@ h2,h1,p {
     font-size: 18px;
     line-height: 1.5;
   }
-
 }
+
